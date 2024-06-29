@@ -1,0 +1,6 @@
+node_modules
+package-lock.json
+.env
+sessions/*
+images/whatsapp-qrcoode.png
+whatsapp-sessions.json
