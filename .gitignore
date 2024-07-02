@@ -4,3 +4,5 @@ package-lock.json
 sessions/*
 images/whatsapp-qrcoode.png
 whatsapp-sessions.json
+.wwebjs_auth/*
+.wwebjs_cache/*

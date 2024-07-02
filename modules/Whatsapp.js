@@ -41,11 +41,7 @@ const createSession = function (id, description) {
 		authStrategy: new LocalAuth({
 			clientId: id,
 			dataPath: "sessions"
-		}),
-		webVersionCache: {
-			type: 'remote',
-			remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2413.51-beta.html'
-		}
+		})
 	});
 
 	client.initialize();
@@ -61,7 +57,7 @@ const createSession = function (id, description) {
 		saveQrCode(qr);
 	});
 
-	client.on('ready', () => {
+	client.on('ready', async () => {
 
 		const savedSessions = getSession();
 		const sessionIndex = savedSessions.findIndex(sess => sess.id == id);
@@ -69,6 +65,9 @@ const createSession = function (id, description) {
 
 		updateSessionStatus(cid, 'CONNECTED & READY TO USE');
 		saveSession(savedSessions);
+
+		const version = await client.getWWebVersion();
+    	console.log(`WWeb v${version}`);
 	});
 
 	client.on('authenticated', () => {
